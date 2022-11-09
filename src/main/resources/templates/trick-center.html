@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Trick center</title>
+</head>
+<body>
+    <div th:insert="index :: nav"></div>
+<section>
+    <h3 th:if="${knownTrick}"
+        th:text="|${loggedInAs} knows ${knownTrick} already, please select another one!|"
+    ></h3>
+    <form th:action="@{/trickCenter(loggedInAs=${loggedInAs})}" th:method="post">
+        <label for="tricks">Tricks</label>
+        <select id="tricks" th:name="'trick'">
+            <option th:each="trick : ${tricks}"
+                    th:text="${trick}"
+                    th:value="${trick}"
+            ></option>
+        </select>
+        <button type="submit">LEARN</button>
+    </form>
+</section>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Programmer fox club</title>
+</head>
+<body>
+    <nav>
+        <p th:if="${loggedInAs}"
+           th:text="|Currently logged in as: ${loggedInAs}|"
+        ></p>
+        <ul>
+            <li><a th:href="@{/(loggedInAs=${loggedInAs})}">Information</a></li>
+            <li><a th:href="@{/nutrition(loggedInAs=${loggedInAs})}">Nutrition Store</a></li>
+            <li><a th:href="@{/trickCenter(loggedInAs=${loggedInAs})}">Trick Center</a></li>
+            <li><a th:href="@{/login(loggedInAs=${loggedInAs})}">Login</a></li>
+        </ul>
+    </nav>
+<section>
+    <img src="/assets/greenfox.png" alt="Mr. Fox picture"/>
+    <p th:object="${fox}"
+       th:text="|This is ${loggedInAs}.
+    Currently living on *{food} and *{drink}.
+    He knows *{tricks.size()} tricks.|"
+    ></p>
+</section>
+<section>
+    <h1>Known Tricks</h1>
+    <ul>
+        <p th:object="${fox}"
+           th:if="${fox.tricks} and ${fox.tricks.size() < 1}"
+           th:text="'Doesn`t know any tricks yet...'"
+        ></p>
+        <li th:object="${fox}"
+            th:if="*{tricks}"
+            th:each="trick : *{tricks}"
+            th:text="${trick}"
+        >No tricks yet</li>
+    </ul>
+</section>
+</body>
+</html>

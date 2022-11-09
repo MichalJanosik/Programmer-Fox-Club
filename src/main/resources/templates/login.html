@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Programmer fox club login</title>
+</head>
+<body>
+    <header>
+        <h1 th:text="'Wellcome to Programmer Fox Club!'"></h1>
+    </header>
+    <div th:insert="index :: nav"></div>
+    <section>
+
+<!--        initial form render-->
+        <form th:unless="${name}" th:action="@{/login}" th:method="'post'">
+            <p th:text="${message}"></p>
+            <label for="name" th:text="'Name'"></label>
+            <input id="name" name="name" type="text">
+            <button type="submit">GO</button>
+        </form>
+
+<!--        unknown entered name form render-->
+        <form th:if="${name}" th:action="@{/login}" th:method="'post'">
+            <p th:text="${message}"></p>
+            <button th:type="'submit'"
+                    th:text="'ADD NEW FOX: ' + ${name}"
+                    th:name="'newFox'"
+                    th:value="${name}"
+            ></button>
+            <button th:type="'submit'"
+                    th:text="'BACK TO LOGIN'"
+                    th:name="'login'"
+                    th:value="'login'"
+            ></button>
+        </form>
+
+    </section>
+</body>
+</html>
