@@ -4,10 +4,13 @@
 
 ### Tech Stack: ###
 - Java SE
+IntelliJ IDEA
 - Gradle
 - MySQL
 - Spring Boot
    - Spring Web
+   - Spring Developer Tools
    - Thymeleaf
+   - Lombok
 - HTML
 - CSS
